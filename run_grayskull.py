@@ -1,6 +1,14 @@
 """Touch up the conda recipe from grayskull using conda-souschef."""
-from souschef.recipe import Recipe
+import os
 from os.path import join
+from souschef.recipe import Recipe
+import chem_wasserstein
+
+os.system(
+    "grayskull pypi {0}=={1}".format(
+        chem_wasserstein.__name__, chem_wasserstein.__version__
+    )
+)
 
 fpath = join("chem_wasserstein", "meta.yaml")
 fpath2 = join("scratch", "meta.yaml")
