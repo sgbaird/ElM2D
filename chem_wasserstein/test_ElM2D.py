@@ -50,7 +50,7 @@ class Testing(unittest.TestCase):
     def test_dm_close(self):
         mapper = custom_ElM2D(metric="mod_petti")
         # df = pd.read_csv("train-debug.csv")
-        df = pd.read_csv(join(dirname(relpath(__file__)), "stable-mp.csv"))
+        df = pd.read_csv(join(dirname(relpath(__file__)), "stable-mp-500.csv"))
         formulas = df["formula"]
         nformulas = 500
         sub_formulas = formulas[:nformulas]
