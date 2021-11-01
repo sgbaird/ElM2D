@@ -21,14 +21,14 @@ from numpy.testing import assert_allclose
 from sklearn.metrics import mean_squared_error
 from scipy.spatial.distance import squareform
 
-from .utils.Timer import Timer
+from chem_wasserstein.utils.Timer import Timer
 
-# from ElM2D import ElM2D as pip_ElM2D
+# from ElM2D.ElM2D import ElM2D as pip_ElM2D
 
 # from EleMD import EleMD
 import pandas as pd
 
-from ElMD import ElMD
+from ElMD.ElMD import ElMD
 
 target = "cuda"
 
@@ -41,7 +41,7 @@ n_elements = len(ElMD(metric="mod_petti").periodic_tab)
 # os.environ["FASTMATH"] = "1"
 # os.environ["TARGET"] = target
 
-from .ElM2D_ import ElM2D as custom_ElM2D  # noqa
+from chem_wasserstein.ElM2D_ import ElM2D as custom_ElM2D  # noqa
 
 # reload(ElM2D_)
 
@@ -58,16 +58,16 @@ class Testing(unittest.TestCase):
             mapper.fit(sub_formulas, target=target)
             dm_wasserstein = mapper.dm
 
-        # FIXME: njit_dist_matrix not inheriting env vars, are env vars even necessary for njit
-        # mapper.fit(sub_formulas, target="cpu")
-        # dm_wasserstein = mapper.dm
+            # FIXME: njit_dist_matrix not inheriting env vars, are env vars even necessary for njit
+            # mapper.fit(sub_formulas, target="cpu")
+            # dm_wasserstein = mapper.dm
 
-        # # TODO: replace check with a CSV file
-        # with Timer("dm_network"):
-        #     mapper2 = pip_ElM2D(sub_formulas)
-        #     # mapper2 = ElM2D(emd_algorithm="network_simplex")
-        #     mapper2.fit(sub_formulas)
-        #     dm_network = mapper2.dm
+            # # TODO: replace check with a CSV file
+            # with Timer("dm_network"):
+            # mapper2 = pip_ElM2D(sub_formulas)
+            # # mapper2 = custom_ElM2D(emd_algorithm="network_simplex")
+            # mapper2.fit(sub_formulas)
+            # dm_network = mapper2.dm
 
         # 500 x 500 distance matrix
         if nformulas > 500:
