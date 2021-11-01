@@ -57,7 +57,7 @@ import plotly.io as pio
 # from tqdm import tqdm
 from pqdm.processes import pqdm
 
-from ElMD import ElMD, EMD
+from ElMD.ElMD import ElMD, EMD
 from dist_matrix.njit_dist_matrix_full import dist_matrix as cpu_dist_matrix
 
 # overriden by ElM2D class if self.target is not None
@@ -601,7 +601,8 @@ class ElM2D:
 
         if self.verbose:
             print("Parsing Formula")
-            for i, formula in pqdm(list(enumerate(formula_list))):
+            # for i, formula in pqdm(list(enumerate(formula_list))):
+            for i, formula in enumerate(formula_list):
                 self.input_mat[i] = ElMD(formula, metric=self.metric).ratio_vector
         else:
             for i, formula in enumerate(formula_list):
@@ -610,7 +611,8 @@ class ElM2D:
         # Create input pairings
         if self.verbose:
             print("Constructing joint compositional pairings")
-            for i in pqdm(range(len(formula_list) - 1)):
+            # for i in pqdm(range(len(formula_list) - 1)):
+            for i in range(len(formula_list) - 1):
                 sublist = [(i, j) for j in range(i + 1, len(formula_list))]
                 pool_list.append(sublist)
         else:
