@@ -33,7 +33,7 @@ dependencies = [
     "tqdm",
     "umap-learn",
     "dist_matrix >=1.0.2",
-    "ElMD ==0.4.11",
+    "ElMD ==0.4.8",
     "scikit_learn",
 ]
 

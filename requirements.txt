@@ -6,6 +6,6 @@ scipy==1.7.1
 tqdm==4.62.3
 umap_learn==0.5.1
 dist_matrix==1.0.1
-ElMD==0.4.11
+ElMD==0.4.8
 scikit_learn==1.0.1
 umap==0.1.1
