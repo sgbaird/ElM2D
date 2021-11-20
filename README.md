@@ -1,5 +1,5 @@
 # chem_wasserstein
-A high performance mapping class to construct [ElMD distance matrices](www.github.com/sgbaird/ElMD) from large datasets of ionic compositions, suitable for single node usage on HPC systems. This includes helper methods to directly embed these datasets as maps of chemical space, as well as sorting lists of compositions, and exporting kernel matrices. 
+A high performance mapping class to construct [ElMD distance matrices](www.github.com/lrcfmd/ElMD) from large datasets of ionic compositions, suitable for single node usage on HPC systems. This includes helper methods to directly embed these datasets as maps of chemical space, as well as sorting lists of compositions, and exporting kernel matrices. 
 
 ## This Fork
 :warning: For the original ElM2D repository, see https://github.com/lrcfmd/ElM2D. :warning:
