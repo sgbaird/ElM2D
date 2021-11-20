@@ -1,9 +1,12 @@
 # chem_wasserstein
-A high performance mapping class to construct [ElMD distance matrices](www.github.com/lrcfmd/ElMD) from large datasets of ionic compositions, suitable for single node usage on HPC systems. This includes helper methods to directly embed these datasets as maps of chemical space, as well as sorting lists of compositions, and exporting kernel matrices. 
+A high performance mapping class to construct [ElMD distance matrices](www.github.com/sgbaird/ElMD) from large datasets of ionic compositions, suitable for single node usage on HPC systems. This includes helper methods to directly embed these datasets as maps of chemical space, as well as sorting lists of compositions, and exporting kernel matrices. 
 
+## This Fork
 :warning: For the original ElM2D repository, see https://github.com/lrcfmd/ElM2D. :warning:
+
 This is a refactored version which incorporates fast distance matrix computations for the modified Pettifor scale representation, and is in the process of being integrated into ElMD and ElM2D. The documentation as follows has changes relative to the original documentation. Additionally, this is packaged on PyPI and Anaconda, but under a different name: `chem_wasserstein`.
 
+## Installation
 Recommended installation through `conda` with python 3.8.
 
 ```
