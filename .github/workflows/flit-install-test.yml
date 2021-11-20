@@ -2,8 +2,8 @@ name: Install with flit and test via Pytest
 
 on:
   push:
-#     paths:
-#     - '**.py' # only run workflow when source files changed
+    paths:
+    - '**.py' # only run workflow when source files changed
 
 jobs:
   linux-pytest:
