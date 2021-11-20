@@ -12,7 +12,7 @@ Recommended installation through `conda` with python 3.8.
 ```
 conda install -c sgbaird chem_wasserstein
 ```
-
+or
 ```
 pip install chem_wasserstein
 ```
