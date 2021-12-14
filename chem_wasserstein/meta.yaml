@@ -1,5 +1,5 @@
 {% set name = "chem_wasserstein" %}
-{% set version = "1.0.6" %}
+{% set version = "1.0.7" %}
 
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/chem_wasserstein-{{ version }}.tar.gz
-  sha256: b08ed6ba0829dd0f50d3982f17c80cfd109403ccf6c59982f3b9fa7b343f8976
+  sha256: dc5d788f1b7d7b6ac3974c7b651b68acf87c546ee7636e893b5931cda8cebd3b
 
 build:
   number: 0
