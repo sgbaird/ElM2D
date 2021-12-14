@@ -1,0 +1,94 @@
+name: Test, Publish, and Release
+
+on: 
+  push:
+    tags:
+    - "*.*.*"
+
+jobs:
+  flit-publish-gh-release:
+    name: Test, Publish to PyPI, and Release on GitHub
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout source
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
+        
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+        
+    - name: Install dependencies
+      shell: bash -l {0}
+      run: |
+        pip install flit coveralls pytest
+        flit install
+    - name: Pytest
+      shell: bash -l {0}
+      run: |
+        export NUMBA_ENABLE_CUDASIM="1" # i.e. disable GPU
+        coverage run --source=chem_wasserstein -m pytest
+        
+    - name: Publish to PyPI
+      shell: bash -l {0}
+      run: |
+        flit publish
+      env:
+        FLIT_USERNAME: __token__
+        FLIT_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+
+    - name: "Build Changelog" # https://github.com/marketplace/actions/release-changelog-builder
+      id: build_changelog
+      uses: mikepenz/release-changelog-builder-action@v2.4.3
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        body: ${{steps.build_changelog.outputs.changelog}}
+          
+        draft: false
+        prerelease: false
+
+    - name: Setup Miniconda
+      uses: conda-incubator/setup-miniconda@v2
+      with:
+        miniconda-version: "latest"
+        auto-update-conda: true
+        activate-environment: chem_wasserstein
+    
+    - name: Install dependencies
+      shell: bash -l {0}
+      run: |    
+        conda install git conda-build conda-verify anaconda-client
+        conda install  -c conda-forge grayskull flit coveralls conda-souschef pytest
+        
+    - name: Build and publish
+      shell: bash -l {0}
+      env:
+        ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
+      run: |
+        mkdir scratch
+        cp LICENSE scratch/
+        python run_grayskull.py
+        conda config --append channels conda-forge
+        conda config --append channels sgbaird
+        conda config --set anaconda_upload yes
+        python -m pytest
+        cd scratch
+        conda build .
+        cd ..
+        
+    - name: Upload to coveralls
+      shell: bash -l {0}
+      run: coveralls --service=github
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
