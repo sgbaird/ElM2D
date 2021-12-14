@@ -35,3 +35,11 @@ class NoTimer(object):
     def __init__(self, name):
         """Take name as argument and do nothing."""
         pass
+
+    def __enter__(self):
+        """Enter and do nothing."""
+        pass
+
+    def __exit__(self, type, value, traceback):
+        """Do nothing and exit."""
+        pass
