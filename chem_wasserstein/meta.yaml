@@ -1,5 +1,5 @@
 {% set name = "chem_wasserstein" %}
-{% set version = "1.0.7" %}
+{% set version = "1.0.8" %}
 
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/chem_wasserstein-{{ version }}.tar.gz
-  sha256: dc5d788f1b7d7b6ac3974c7b651b68acf87c546ee7636e893b5931cda8cebd3b
+  sha256: 61dfd2069eb2579870f31d16ca156553757cc84824e2356e038cf1ae0bbf2fcf
 
 build:
   number: 0
@@ -21,6 +21,7 @@ requirements:
     - flit
     - python >=3.6,<3.10
   run:
+    - colorama
     - dist_matrix >=1.0.2
     - elmd ==0.4.8
     - numba >=0.53.1
