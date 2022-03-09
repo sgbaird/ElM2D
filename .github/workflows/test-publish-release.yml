@@ -79,10 +79,10 @@ jobs:
         mkdir scratch
         cp LICENSE scratch/
         python run_grayskull.py
-        conda config --append channels conda-forge
-        conda config --append channels sgbaird
+        conda config --add channels conda-forge
+        conda config --add channels pytorch
+        conda config --add channels sgbaird
         conda config --set anaconda_upload yes
-        python -m pytest
         cd scratch
         conda build .
         cd ..
