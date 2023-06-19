@@ -4,7 +4,7 @@ A high performance mapping class to construct [ElMD distance matrices](www.githu
 ## This Fork
 :warning: For the original ElM2D repository, see https://github.com/lrcfmd/ElM2D. :warning:
 
-This is a refactored version which incorporates fast distance matrix computations for the modified Pettifor scale representation, and is in the process of being integrated into ElMD and ElM2D. The documentation as follows has changes relative to the original documentation. Additionally, this is packaged on PyPI and Anaconda, but under a different name: `chem_wasserstein`.
+This is a refactored version which incorporates fast distance matrix computations for the modified Pettifor scale representation, and is in the process of being integrated into ElMD and ElM2D. The documentation as follows has changes relative to the original documentation. Additionally, this is packaged on PyPI and Anaconda, but under a different name: `chem_wasserstein`. A $10000 \times 10000$ pairwise distance matrix can be calculated on the order of 10 seconds (CPU). The distance calculations are also GPU compatible. If running on Colab, be sure to use GPU as the CPU version has some Colab-specific issues with Numba.
 
 ## Installation
 Recommended installation through `conda` with python 3.8.
